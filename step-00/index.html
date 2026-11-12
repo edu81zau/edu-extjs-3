@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/gpl/3.4.1.1/resources/css/ext-all.css"/>
+    <script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/3.4.1.1/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/3.4.1.1/ext-all-debug.js"></script>
+    <!--
+      <script type="text/javascript"          src="../../../extjs/3.4.0/adapter/ext/ext-base.js"></script>
+      <script type="text/javascript"          src="../../../extjs/3.4.0/ext-all.js"></script>
+    -->
+</head>
+<body>
+</body>
+</html>
+<script>
+    Ext.onReady(function () {
+
+        // Тут работаем с ExtJs
+        new Ext.Window({ // Ext.Window
+            title: 'aaa',
+            items: [{
+                xtype: 'form', // Ext.form.FormPanel
+                layout: 'form',
+                items: [{
+                    xtype: 'textfield', // Ext.form.TextField
+                    fieldLabel: 'Hello, label'
+                }]
+            }]
+        }).show()
+    });
+</script>
