@@ -50,4 +50,4 @@ Ext.onReady(function () {
     }
     const win = new Ext.Window(config);
     win.show();
-})
+});

@@ -16,7 +16,7 @@ Ext.onReady(function (){
             closeAction: 'hide',
             layout: 'fit',
             items:{
-                xtype: 'panel',
+                xtype: 'textarea',
                 html: 'Привет! Я окно под номером ' + (i+1),
             },
             x: 100 + (i*300),
