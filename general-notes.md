@@ -1,4 +1,6 @@
 
+console.log("btn1 handle",[this,arguments]);
+
 ---
 Описать, для чего и в каких нужно включать в кад это слово - debugger;
 

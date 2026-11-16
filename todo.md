@@ -221,70 +221,51 @@ url: http://localhost:7081/ree/ree-type/list
 ````JS
 // пример конфига
 // sai-web.trunk/application/modules/abd/views/scripts/abd-docs-pack-lost/index/createWindowDocumentEdit.js
-{
+const config = {
     xtype: 'combo',
-        fieldLabel
-:
-    'Тип документу',
-        name
-:
-    'TDOC_ID',
-        hiddenName
-:
-    'TDOC_ID',
-        valueField
-:
-    'ID',
-        displayField
-:
-    'NAME',
-        mode
-:
-    'local',  // ??? Hежим работі фильтра - локадьно или удаленно
-        selectOnFocus
-:
-    true,
-        triggerAction
-:
-    'all',  // что вібирать при клике на иконку раскрівающегося списка
-        forceSelection
-:
-    true,
-        typeAhead
-:
-    true,
-        minChars
-:
-    1,
-        // lastQuery : '', // имеет значение для JsonStore
-        store
-:
-    {
-        xtype : 'jsonstore',
-            autoDestroy
-    :
-        true,
-            autoLoad
-    :
-        true,
-            url
-    :
-        '/abd/abd-docs-lost-type/list',
-            root
-    :
-        'rows', // из какой ноді JSON брать данніе
-            idProperty
-    :
+    fieldLabel:
+        'Тип документу',
+    name:
+        'TDOC_ID',
+    hiddenName:
+        'TDOC_ID',
+    valueField:
         'ID',
-            fields
-    :
-        ['ID', 'NAME'],
-            listeners
-    :
+    displayField:
+        'NAME',
+    mode:
+        'local',  // ??? Hежим работі фильтра - локадьно или удаленно
+    selectOnFocus:
+        true,
+    triggerAction:
+        'all',  // что вібирать при клике на иконку раскрівающегося списка
+    forceSelection:
+        true,
+    typeAhead:
+        true,
+    minChars:
+        1,
+    // lastQuery : '', // имеет значение для JsonStore
+    store:
         {
-            // exception : Application.Helper.storeException  // Yавесить свой listener. 
+            xtype: 'jsonstore',
+            autoDestroy:
+                true,
+            autoLoad:
+                true,
+            url:
+                '/abd/abd-docs-lost-type/list',
+            root:
+                'rows', // из какой ноді JSON брать данніе
+            idProperty:
+                'ID',
+            fields:
+                ['ID', 'NAME'],
+            listeners:
+                {
+                    // exception : Application.Helper.storeException  // Yавесить свой listener. 
+                }
         }
-    }
 }
 ````
 
@@ -304,7 +285,7 @@ url: http://localhost:7081/ree/ree-type/list
 * Рассказать, где лежат не сбандленные исходники ExtJs.
 * Настройка PhpStorm для удобного поиска классов по клику.
 * События в Ext3. 
-* Создание собственных событий.
+* Созданиеb
 ````
 
 0. Прочитати базову інформацію про компонент Ext.util.Observable, яка надає можливість оперувати подіями.
@@ -367,9 +348,10 @@ https://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.TextField-cfg-enableKeyEvent
    Потрібно зробити вікно з грідом та панеллю Ext.form.FormPanel.
    При зміні активного запису гріда витягувати дані запису та розподіляти їх по полях форми.  
    url: http://localhost:7081/ree/ree-type/list  (по цьому URL затримка 5 секунд для тесту загрузки)
-        http://localhost:7081/ree/ree-type/list?enable-errors=1&force-error=1
+   http://localhost:7081/ree/ree-type/list?enable-errors=1&force-error=1
    в тулбарі гріда додати кнопку "оновити" при натисканні на яку перезавантажувати дані в store.
-   на час завантаження даних накласти маску на grid (конфігураційна властивість mask, або виклик "grid.getEl().mask(...)")
+   на час завантаження даних накласти маску на grid (конфігураційна властивість mask, або виклик "grid.getEl()
+   .mask(...)")
    якщо при завантаженні даних виникла помилка, то її потрібно коректно опрацювати
    http-200, success : false - вивести message
    HTTP-400 - вивести 'дані не завантажено'
@@ -477,22 +459,26 @@ grid.getSelectionModel().on('selectionchange', function (selectionModel) {
 
 1. Вспомогательные методы
    1.1. Связанные с объектами
-+   Ext.ns 
-+   Ext.apply
-+   Ext.applyIf
-+   Ext.copyTo
-   1.2. Общего назначения (проверка типов)
-+   Ext.isEmpty
-+   Ext.isArray
-+   Ext.isObject
-+   Ext.isFunction
-   Ext.is* - проверка типов компонент.
-   ... все остальное используется редко
+
++ Ext.ns
++ Ext.apply
++ Ext.applyIf
++ Ext.copyTo
+  1.2. Общего назначения (проверка типов)
++ Ext.isEmpty
++ Ext.isArray
++ Ext.isObject
++ Ext.isFunction
+  Ext.is* - проверка типов компонент.
+  ... все остальное используется редко
+
 2. Основные методы
-X   Ext.define
-+   Ext.extend
-+   Ext.override
-+   Ext.reg
+   X Ext.define
+
++ Ext.extend
++ Ext.override
++ Ext.reg
+
 ---------
 -- Практичні задачі.
 
@@ -515,13 +501,13 @@ X   Ext.define
 :----------------------------------------:
 :           [buttonSubmit] [buttonClose] :
 ------------------------------------------
-2.1. При ручному введенні тексту в компонент типу "textfielduppercase", текст 
+2.1. При ручному введенні тексту в компонент типу "textfielduppercase", текст
 повинен переводитися в верхній регістр.
 2.2. При натисканні на кнопку "button1" значення поля "textfield1" має копію-
-ватися у поля "textfielduppercase1" та "textfielduppercase2". При цьому 
-компоненти типу "textfielduppercase" повинні автоматично переводити значення у 
+ватися у поля "textfielduppercase1" та "textfielduppercase2". При цьому
+компоненти типу "textfielduppercase" повинні автоматично переводити значення у
 верхній регістр.
-2.3. При натисканні на кнопку "buttonSubmit" у консоль потрібно вивести значення 
+2.3. При натисканні на кнопку "buttonSubmit" у консоль потрібно вивести значення
 всіх полів форми.
 2.4. При натисканні на кнопку "buttonClose" потрібно закривати тестове вікно.
 
@@ -535,28 +521,30 @@ X   Ext.define
    Поле 'userinfofield' повинно зберігати інформацію про користувача.
    Набір інформації наступний: Прізвище, Ім'я, По батькові, Дата народження, Стать.
    Дані для встановлення значення поля. Припустимо, поле називається "userinfofield1".
+
 ````JS
     //1. Получаем данные для передачи в поле "userinfofield1"
-    var jsonString = JSON.stringify({
-       name1 : 'Іванов', // Фамилия
-       name2 : 'Іван', // Имя
-       name3 : 'Іванович', // Отчество
-       birthday : (new Date()).format('d.m.Y'), // Дата рождения
-       sex : 'M' // Стать M - male, F - female
-    });
-    console.log('jsonString', jsonString);
-    // jsonString '{"name1":"Іванов","name2":"Іван","name3":"Іванович","birthday":"17.03.2020","sex":"M"}'
-   
-    // 2. Передача в поле "userinfofield1".
-    // Увага! На вхід методу setValue передаємо рядок у форматі JSON.
-    userinfofield1.setValue(jsonString);
-    var jsonObj = JSON.parse(jsonString); // Всередині поля з рядка отримуємо об'єкт.
-    console.log('jsonObj', jsonObj);
-    
-    // 3. Отримання даних поля "userinfofield1"
-    // Увага! На виході методу getValue отримуємо рядок у форматі JSON.
-    var jsonString = userinfofield1.getValue();
+var jsonString = JSON.stringify({
+    name1: 'Іванов', // Фамилия
+    name2: 'Іван', // Имя
+    name3: 'Іванович', // Отчество
+    birthday: (new Date()).format('d.m.Y'), // Дата рождения
+    sex: 'M' // Стать M - male, F - female
+});
+console.log('jsonString', jsonString);
+// jsonString '{"name1":"Іванов","name2":"Іван","name3":"Іванович","birthday":"17.03.2020","sex":"M"}'
+
+// 2. Передача в поле "userinfofield1".
+// Увага! На вхід методу setValue передаємо рядок у форматі JSON.
+userinfofield1.setValue(jsonString);
+var jsonObj = JSON.parse(jsonString); // Всередині поля з рядка отримуємо об'єкт.
+console.log('jsonObj', jsonObj);
+
+// 3. Отримання даних поля "userinfofield1"
+// Увага! На виході методу getValue отримуємо рядок у форматі JSON.
+var jsonString = userinfofield1.getValue();
 ````
+
 2. Тестове вікно.
 
 -------------------------------------------------
@@ -570,12 +558,12 @@ X   Ext.define
 -------------------------------------------------
 
 2.1. Поле "userinfofield1".
-2.1.1. При натисканні кнопки [x] поля  "userinfofield1", поле "userinfofield1" 
+2.1.1. При натисканні кнопки [x] поля  "userinfofield1", поле "userinfofield1"
 потрібно очистити.
-2.1.2. При натисканні кнопки [+] поле "userinfofield1" потрібно відобразити модальне 
+2.1.2. При натисканні кнопки [+] поле "userinfofield1" потрібно відобразити модальне
 вікно для встановлення значень поля.
-Увага! Це вікно має бути інкапсульоване в клас 'userinfofield'. При цьому поля форми 
-"Інформація про користувача" мають бути встановлені відповідно до значення, яке зберігається 
+Увага! Це вікно має бути інкапсульоване в клас 'userinfofield'. При цьому поля форми
+"Інформація про користувача" мають бути встановлені відповідно до значення, яке зберігається
 в "userinfofield1".
 ------------------------------------------
 : Інформація про користувача          [X]:
@@ -588,14 +576,14 @@ X   Ext.define
 :----------------------------------------:
 :           [buttonSubmit] [buttonClose] :
 ------------------------------------------
-При натисканні кнопки "buttonSubmit" потрібно зібрати значення полів з форми в рядок JSON 
+При натисканні кнопки "buttonSubmit" потрібно зібрати значення полів з форми в рядок JSON
 і записати в поле "userinfofield1" на формі "Тестове вікно з формою".
 При натисканні кнопки "buttonClose" потрібно закрити вікно "Інформація про користувача".
 
 2.2. Поле "textfield1"
-2.2.1. При натисканні кнопки "get" поля "textfield1" потрібно отримати значення поля 
+2.2.1. При натисканні кнопки "get" поля "textfield1" потрібно отримати значення поля
 "userinfofield1" і записати його у поле "textfield1".
-2.2.2. При натисканні кнопки "set" поля "textfield1", потрібно передати значення поля 
+2.2.2. При натисканні кнопки "set" поля "textfield1", потрібно передати значення поля
 "textfield1" до полів "userinfofield1" і "userinfofield2".
 Тобто ми створюємо рядок JSON з різними даними, копіюємо його в поле "textfield1",
 натискаємо "set", відкриваємо форму, натискаючи на "[+]" і перевіряємо, що поля форми
