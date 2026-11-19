@@ -195,3 +195,112 @@ Ext.onReady( function() {
     app.run();
 
 });
+
+
+///////////
+
+Ext.onReady( function() {
+
+    const app = {
+
+        name: 'Demo app 1',
+        panel1: undefined,
+        modules: [
+            {
+                name: 'module1',
+                showInfo: function(){
+                    alert("Module name = " + this.name);
+                }
+            },
+            {
+                name: 'module2',
+                showInfo: function(){
+                    alert("Module name = " + this.name);
+                }
+            }
+        ],
+
+        createPanelForScope: function(){
+
+            const config = {
+
+                title: 'Работа с scope',
+                border: true,
+                height: 450,
+
+                buttons: [
+                    {
+                        text: 'button1_scope_default',
+                        itemId: 'btn1',
+                        width: 100,
+                        height: 25,
+                        handler: function(btn){
+                            console.log("createPanelForScope." + btn.itemId, [this,arguments]);
+                            console.log("this.name", this.name);
+                        }
+                    },
+                    {
+                        text: 'button2_scope_default',
+                        itemId: 'btn2',
+                        width: 100,
+                        height: 25,
+                        handler: function(btn){
+                            const config = {};
+                            console.log("createPanelForScope." + btn.itemId, [this,arguments]);
+                            console.log("this.name", this.name);
+                        }.bind(this)
+                    },
+                    {
+                        text: 'button2_scope_module1',
+                        itemId: 'btn3',
+                        width: 100,
+                        height: 25,
+                        scope: this.modules[0],
+                        handler: function(btn){
+                            console.log("createPanelForScope." + btn.itemId, [this,arguments]);
+                            console.log("this.name", this.name);
+                            this.showInfo();
+                        }
+                    },
+                    {
+                        text: 'button3_scope_module2',
+                        itemId: 'btn4',
+                        width: 100,
+                        height: 25,
+                        scope: this.modules[1],
+                        handler: function(btn){
+                            console.log("createPanelForScope." + btn.itemId, [this,arguments]);
+                            console.log("this.name", this.name);
+                            this.showInfo();
+                        }
+                    }
+                ]
+            };
+
+            const res = new Ext.Panel(config);
+            return res;
+        },
+
+        run: function() {
+
+            this.panel1 = this.createPanelForScope();
+
+            const config = {
+                title: "Главное окно",
+                width: 850,
+                height: 500,
+                modal: true,
+
+                items: [
+                    this.panel1,
+                ]
+            };
+
+            this.window = new Ext.Window(config);
+            this.window.show();
+        },
+    };
+
+    app.run();
+
+});

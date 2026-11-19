@@ -1,28 +1,25 @@
 
-/**
-*
- Использовать createDelegate() - используется в Ext (устарел, не рекомендуется)
- тоже самое сделать через bind();
- где-то использовать стрелочную функцию.
-
-* **/
+// Здесь демонстрируется работа с основными моментами button
 
 Ext.onReady( function() {
 
     const app = {
 
-        //name: 'Demo app 1',
-        modules: [{
-            name: 'module1',
-            showInfo: function(){
-                alert("Module name = " +this.name);
+        name: 'Demo app 1',
+        modules: [
+            {
+                name: 'module1',
+                showInfo: function(){
+                    alert("Module name = " + this.name);
+                }
+            },
+            {
+                name: 'module2',
+                showInfo: function(){
+                    alert("Module name = " + this.name);
+                }
             }
-        },{
-            name: 'module2',
-            showInfo: function(){
-                alert("Module name = " +this.name);
-            }
-        }],
+        ],
 
         createPanelForScope: function(){
             const config = {
@@ -73,8 +70,6 @@ Ext.onReady( function() {
         },
 
         createPanelForButtons: function(){
-
-            const self = this;
 
             const config = {
                 title: "Работа с кнопками",
